@@ -1,9 +1,12 @@
 import Block from './block';
 import validate from './modules/validate';
+import MemoryPool from './memoryPool';
+
 class Blockchain {
  constructor(){
 	this.blocks=[Block.genesis];
- }	
+	this.memoryPool = new MemoryPool();
+}	
  addBlock(data){
 	const previousBlock= this.blocks[this.blocks.length - 1];
 	const block = Block.mine(previousBlock, data);

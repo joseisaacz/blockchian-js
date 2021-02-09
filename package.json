@@ -38,7 +38,7 @@
   },
   "jest": {
     "silent": true,
-    "verbose": false,
+    "verbose": true,
     "testEnvironment": "node"
   }
 }

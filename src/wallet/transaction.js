@@ -1,5 +1,8 @@
 import { v1 as uuidv1 } from 'uuid';
 import {elliptic} from '../modules';
+
+const REWARD = 1;
+
 class Transaction {
     constructor(){
         this.id = uuidv1();
@@ -34,6 +37,10 @@ class Transaction {
         };
     }
 
+    static reward(minerWallet, blockchainWallet){
+      return this.create(blockchainWallet, minerWallet.publicKey, REWARD);
+    }
+
     update(senderWallet, recipientAddress, amount){
         const senderOuput = this.outputs.find((output)=>output.address === senderWallet.publicKey);
         if(amount>senderOuput.amount) throw Error(`Amount: ${amount} exceeds balance`); 
@@ -43,4 +50,6 @@ class Transaction {
         return this;
     }
 }
+
+export {REWARD} ;
  export default Transaction;

@@ -1,3 +1,4 @@
+/* eslint-disable  no-undef*/
 import Blockchain from '../blockchain';
 import validate from './validate';
 
@@ -22,13 +23,13 @@ let blockchain;
 	});
 	
 	it('invalidates a chain with a corrupt previousHash within a block', () => {
-	    blockchain.addBlock('bl4ck-1');
-	    blockchain.blocks[1].previousHash = 'h4ck-previoushash';
+	blockchain.addBlock('bl4ck-1');
+	blockchain.blocks[1].previousHash = 'h4ck-previoushash';
 
-	    expect(() => {
-		          validate(blockchain.blocks);
-		        }).toThrowError('Invalid previous hash.');
-	  });
+	expect(() => {
+		validate(blockchain.blocks);
+		}).toThrowError('Invalid previous hash.');
+	});
 
 	it('invalidates a chain with a corrupt hash within a block', () => {
 		blockchain.addBlock('blocque');
